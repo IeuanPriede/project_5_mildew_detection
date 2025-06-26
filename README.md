@@ -54,15 +54,44 @@ To save time in this process, the IT team suggested an ML system that detects in
 
 ## Hypothesis and how to validate?
 
-- List here your project hypothesis(es) and how you envision validating it (them).
+Hypothesis: There are consistent visual features in cherry leaves with powdery mildew that can be detected and classified by a machine learning model with high accuracy.
+
+Validation Steps:
+
+- Create average and variability images for each class (healthy/mildew).
+
+- Train a CNN model on labeled cherry leaf images.
+
+- Evaluate the model with accuracy, confusion matrix, and class-based performance metrics.
+
+- Deploy the model in a dashboard and test with new leaf images.
+
+- Target prediction accuracy: ≥ 97%
 
 ## The rationale to map the business requirements to the Data Visualisations and ML tasks
 
-- List your business requirements and a rationale to map them to the Data Visualisations and ML tasks.
+| Business Requirement                  | ML/Visualisation Task                                               | Rationale                                                |
+| ------------------------------------- | ------------------------------------------------------------------- | -------------------------------------------------------- |
+| Visual differentiation of leaf health | Create average, variability, and difference images + image montages | Provides insight into common visual traits of each class |
+| Predict mildew presence               | Train binary classification CNN                                     | Automates detection with scalable performance            |
+| Usability via dashboard               | Streamlit dashboard with upload & prediction                        | Ensures non-technical users can access results easily    |
+
 
 ## ML Business Case
 
-- In the previous bullet, you potentially visualised an ML task to answer a business requirement. You should frame the business case using the method we covered in the course.
+Problem: Visual inspection of leaves is time-consuming, error-prone, and unscalable.
+
+Solution: A Convolutional Neural Network (CNN) trained on cherry leaf images can classify leaves as “Healthy” or “Powdery Mildew” instantly.
+
+Benefits:
+
+- Reduces inspection time from 30 minutes to seconds
+
+- Enhances crop quality assurance
+
+- Scalable to other crops and use cases
+
+- Performance Metric: Must achieve at least 97% accuracy to be considered successful by the client.
 
 ## Dashboard Design
 
