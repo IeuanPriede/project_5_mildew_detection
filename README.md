@@ -293,6 +293,8 @@ The client wanted a dashboard that would let them upload images of leaves to the
 
 ### Python Validation
 
+The python code for the app pages and files for data management and predictive analysis was validated using a [PEP8 linter](https://pep8ci.herokuapp.com/).
+
 ## Credits
 
 ### Content

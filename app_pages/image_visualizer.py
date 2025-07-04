@@ -9,18 +9,21 @@ from matplotlib.image import imread
 import itertools
 import random
 
+
 def image_visualizer_body():
     st.write("### Image Visualizer")
     st.info(
         f"* This page will examine Business Requirement 1.\n"
         f"* The client is interested in conducting a study to visually "
         f"differentiate a healthy leaf from one with powdery mildew.")
-    
+
     version = 'v1'
     if st.checkbox("Difference between average and variability image"):
-    
+
         avg_healthy = plt.imread(f"outputs/{version}/avg_var_healthy.png")
-        avg_mildew = plt.imread(f"outputs/{version}/avg_var_powdery_mildew.png")
+        avg_mildew = plt.imread(
+            f"outputs/{version}/avg_var_powdery_mildew.png"
+            )
 
         st.image(avg_healthy,
                 caption='Healthy Leaf - Average and Variability')
@@ -28,10 +31,14 @@ def image_visualizer_body():
                 caption='Infected Leaf - Average and Variability')
 
         st.warning(
-            f"* The images—especially the variability images—clearly help distinguish "
-            f"between healthy and diseased leaves. The mildew creates white spots that "
-            f"form a visible pattern on the diseased leaves in the variability images.\n"
-            f"* The average images also highlight a color difference: infected leaves "
+            f"* The images—especially the variability "
+            f"images—clearly help distinguish "
+            f"between healthy and diseased leaves. "
+            f"The mildew creates white spots that "
+            f"form a visible pattern on the diseased "
+            f"leaves in the variability images.\n"
+            f"* The average images also highlight a"
+            f"color difference: infected leaves "
             f"appear as a lighter shade of green compared to healthy ones."
         )
 
@@ -42,23 +49,29 @@ def image_visualizer_body():
 
         st.warning(
             f"* The study revealed subtle pattern differences "
-            f"that enabled us to distinguish between healthy and infected leaves."
+            f"that enabled us to distinguish "
+            f"between healthy and infected leaves."
         )
-        st.image(diff_between_avgs, caption='Difference between average images')
+        st.image(
+                diff_between_avgs, caption='Difference between average images'
+            )
 
         st.write("---")
 
-    if st.checkbox("Image Montage"): 
-        st.write("* To refresh the montage, click on the 'Create Montage' button")
+    if st.checkbox("Image Montage"):
+        st.write(
+            "* To refresh the montage, click on the 'Create Montage' button"
+            )
         my_data_dir = 'inputs/cherry_leaves_dataset'
         labels = os.listdir(my_data_dir+ '/validation')
-        label_to_display = st.selectbox(label="Select label", options=labels, index=0)
+        label_to_display = st.selectbox(
+                label="Select label", options=labels, index=0
+            )
     if st.button("Create Montage"):      
         image_montage(dir_path= my_data_dir + '/validation',
-                    label_to_display=label_to_display,
+                    label_to_display=label_to_display, 
                     nrows=8, ncols=3, figsize=(10,25))
         st.write("---")
-
 
 
 def image_montage(dir_path, label_to_display, nrows, ncols, figsize=(15,10)):
@@ -79,7 +92,7 @@ def image_montage(dir_path, label_to_display, nrows, ncols, figsize=(15,10)):
                 f"There are {len(images_list)} in your subset. "
                 f"You requested a montage with {nrows * ncols} spaces")
             return
-            
+
 
         # create list of axes indices based on nrows and ncols
         list_rows= range(0,nrows)
@@ -93,7 +106,9 @@ def image_montage(dir_path, label_to_display, nrows, ncols, figsize=(15,10)):
             img = imread(dir_path + '/' + label_to_display + '/' + img_idx[x])
             img_shape = img.shape
             axes[plot_idx[x][0], plot_idx[x][1]].imshow(img)
-            axes[plot_idx[x][0], plot_idx[x][1]].set_title(f"Width {img_shape[1]}px x Height {img_shape[0]}px")
+            axes[plot_idx[x][0], plot_idx[x][1]].set_title(
+                f"Width {img_shape[1]}px x Height {img_shape[0]}px"
+                )
             axes[plot_idx[x][0], plot_idx[x][1]].set_xticks([])
             axes[plot_idx[x][0], plot_idx[x][1]].set_yticks([])
         plt.tight_layout()
