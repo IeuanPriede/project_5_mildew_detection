@@ -1,42 +1,40 @@
-# ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Detection of mildew on cherry leaves
 
-## Template Instructions
+![Responsivity image](assets/images/responisivity_image.png)
 
-Welcome,
+## Contents
 
-This is the Code Institute student template for the Cherry Leaves project option in Predictive Analytics. We have preinstalled all of the tools you need to get started. It's perfectly okay to use this template as the basis for your project submissions. Click the `Use this template` button above to get started.
+- [Detection of mildew on cherry leaves](#detection-of-mildew-on-cherry-leaves)
+  - [Contents](#contents)
+  - [Introduction](#introduction)
+  - [Dataset Content](#dataset-content)
+  - [Business Requirements](#business-requirements)
+  - [Hypothesis and how to validate?](#hypothesis-and-how-to-validate)
+  - [The rationale to map the business requirements to the Data Visualisations and ML tasks](#the-rationale-to-map-the-business-requirements-to-the-data-visualisations-and-ml-tasks)
+  - [ML Business Case](#ml-business-case)
+  - [Dashboard Design](#dashboard-design)
+  - [Unfixed Bugs](#unfixed-bugs)
+  - [Deployment](#deployment)
+    - [Render](#render)
+  - [Main Data Analysis and Machine Learning Libraries](#main-data-analysis-and-machine-learning-libraries)
+    - [Other technologies used](#other-technologies-used)
+  - [Issues](#issues)
+  - [Testing](#testing)
+    - [Manual Testing](#manual-testing)
+    - [Python Validation](#python-validation)
+  - [Credits](#credits)
+    - [Content](#content)
+  - [Acknowledgement](#acknowledgement)
 
-You can safely delete the Template Instructions section of this README.md file and modify the remaining paragraphs for your own project. Please do read the Template Instructions at least once, though! It contains some important information about the IDE and the extensions we use.
+## Introduction
 
-## How to use this repo
+Cherrypicker is a data science and machine learning (ML) project focused on using predictive analytics to distinguish between two classes of leaf images: healthy and infected.
 
-1. Use this template to create your GitHub project repo
+The project is designed to support an agri-food business currently facing an outbreak of powdery mildew in its cherry tree plantations. At present, identifying infected trees is done manually—a process that is both time-consuming and labour-intensive.
 
-1. In your newly created repo click on the green Code button. 
+To address this, we propose developing an ML model capable of detecting powdery mildew from photographs of cherry tree leaves. This solution aims to streamline the inspection process, reduce operational workload, and improve the speed and accuracy of treatment decisions, ultimately supporting more effective disease management.
 
-1. Then, from the Codespaces tab, click Create codespace on main.
-
-1. Wait for the workspace to open. This can take a few minutes.
-
-1. Open a new terminal and `pip3 install -r requirements.txt`
-
-1. Open the jupyter_notebooks directory, and click on the notebook you want to open.
-
-1. Click the kernel button and choose Python Environments.
-
-Note that the kernel says Python 3.12.1 as it inherits from the workspace, so it will be Python-3.12.1 as installed by Codespaces. To confirm this, you can use `! python --version` in a notebook code cell.
-
-## Cloud IDE Reminders
-
-To log into the Heroku toolbelt CLI:
-
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In the terminal, run `heroku_config`
-5. Paste in your API key when asked
-
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you, so do not share it. If you accidentally make it public, then you can create a new one with _Regenerate API Key_.
+The project is hosted on the streamlit app and a live version may be found [here](https://project-5-mildew-detection.onrender.com/)
 
 ## Dataset Content
 
@@ -54,19 +52,71 @@ To save time in this process, the IT team suggested an ML system that detects in
 
 ## Hypothesis and how to validate?
 
-Hypothesis: There are consistent visual features in cherry leaves with powdery mildew that can be detected and classified by a machine learning model with high accuracy.
+Hypothesis 🧠: Cherry leaves affected by powdery mildew exhibit consistent visual features that can be detected and accurately classified by a machine learning model.
 
-Validation Steps:
+---
 
-- Create average and variability images for each class (healthy/mildew).
+Validation Strategy ✅:
 
-- Train a CNN model on labeled cherry leaf images.
+- Step 1: Visual Analysis
 
-- Evaluate the model with accuracy, confusion matrix, and class-based performance metrics.
+    To assess whether visual differences exist between healthy and infected leaves, average and variability images were generated for each class. These helped confirm the hypothesis that consistent patterns are visible and could be leveraged by a machine learning model.
 
-- Deploy the model in a dashboard and test with new leaf images.
+    The below images show a selection of healthy leaves:
 
-- Target prediction accuracy: ≥ 97%
+    ![Healthy Leaves](assets/images/healthy_leaves.png)
+
+    And leaves where powdery mildew is present:
+
+    ![Infected Leaves](assets/images/infected_leaves.png)
+
+    To generate the average and variability images used for validation, sample images (like those shown above) were loaded into an array after determining their dimensions. A custom function was then used to compute and visualize the mean and variability across the dataset. Below are the resulting average and variability images for both healthy and infected leaves.
+
+    ![Average & variability for healthy leaves](assets/images/average-healthy.png)
+
+    ![Average & variability for infected leaves](assets/images/average_infected.png)
+
+    From the photographs and results of the analysis, it appears that the hypothesis is correct and there is a visual difference. We may therefore consider the hypothesis validated.
+
+- Step 2: Model Training
+
+    A Convolutional Neural Network (CNN) was trained on a labeled dataset of cherry leaf images. The model was designed to learn and classify features that distinguish healthy from infected leaves.
+
+- Step 3: Performance Evaluation
+
+    The model’s performance was assessed using a combination of classification metrics and training diagnostics to ensure both accuracy and generalization.
+
+    ✅ Metrics Used:
+
+    - Overall Accuracy
+
+    - Confusion Matrix
+  
+    - Precision, Recall, and F1-Score (per class)
+
+    These metrics helped evaluate not only how often the model was correct, but how well it distinguished between healthy and infected leaves under different conditions.
+
+    📈 Training & Validation Performance
+
+    ![Test Set](assets/images/labels_frequencies.png)
+
+    Training and validation accuracy over epochs.
+
+    ![Accuracy](assets/images/accuracy.png)
+
+    Training and validation loss over epochs.
+
+    ![Loss](assets/images/loss.png)
+
+    These graphs show that the model learned effectively, with minimal overfitting and consistent improvement across epochs.
+
+- Step 4: Deployment & Testing
+
+    The final model was deployed within a Streamlit dashboard, allowing users to upload new leaf images and receive real-time predictions. This ensured practical, real-world usability for the client.
+
+    ![Performance](assets/images/performance.png)
+
+    - Target prediction accuracy: ≥ 97% 🎯
 
 ## The rationale to map the business requirements to the Data Visualisations and ML tasks
 
@@ -75,7 +125,6 @@ Validation Steps:
 | Visual differentiation of leaf health | Create average, variability, and difference images + image montages | Provides insight into common visual traits of each class |
 | Predict mildew presence               | Train binary classification CNN                                     | Automates detection with scalable performance            |
 | Usability via dashboard               | Streamlit dashboard with upload & prediction                        | Ensures non-technical users can access results easily    |
-
 
 ## ML Business Case
 
@@ -95,48 +144,167 @@ Benefits:
 
 ## Dashboard Design
 
-- List all dashboard pages and their content, either blocks of information or widgets, like buttons, checkboxes, images, or any other items, that your dashboard library supports.
-- Finally, during the project development, you may revisit your dashboard plan to update a given feature (for example, at the beginning of the project, you were confident you would use a given plot to display an insight, but later, you chose another plot type).
+The dashboard was made using Streamlit and has been designed with clarity and ease of use in mind. It contains the following pages:
+
+1. Project Summary
+
+![Project Summary Page](assets/images/project_summary.png)
+
+This is the introductory page the user will see on accessing the dashboard. Its intended purpose is to provide a new user with essential information both general and specific, so that they may gain a full understanding of the project before proceeding to more technical pages. It contains the following:
+
+- General Information
+- Dataset Information
+- Link to project README
+- Business Requirements
+
+2. Image Visualizer
+
+![Image Visualizer Page](assets/images/image_visualizer.png)
+
+This page contains the following:
+
+- Business requirement 1
+- Checkbox 1 - Difference between average and variability image
+- Checkbox 2 - Differences between average healthy and average infected leaves
+- Checkbox 3 - Image Montage
+
+This page is intended to answer buiness requirement 1: The client is interested in conducting a study to visually differentiate a healthy cherry leaf from one with powdery mildew.
+
+3. Mildew Detector
+
+![Mildew Detector Page](assets/images/mildew_detector.png)
+
+This page contains the following:
+
+- Business requirement 2
+- Link to Kaggle dataset
+- Widget to upload images for analysis
+- Link to download report in .csv format
+
+This page answers business requirement 2: The client is interested in predicting if a cherry leaf is healthy or contains powdery mildew.
+
+4. Project Hypotheses
+
+![Project Hypotheses Page](assets/images/project_hypotheses.png)
+
+This page contains the following:
+
+- Project Hypotheses
+- Validation
+
+This page displays the project hypotheses and explaines the method by which they were validated
+
+5. Performance Metrics
+
+![Performance Metrics Page](assets/images/ml-performance_metrics_1.png)
+![Performance Metrics Page](assets/images/ml-performance-metrics-2.png)
+
+This page contains the following:
+
+- Train, Validation and Test Set: Labels Frequencies
+- Model History
+- Generalised Performance on test set
+
+This page shows the results of our analysis.The page explains how the dataset was used for testing purposes. It also shows the results of the ML model training, including graphics to show model accuracy and loss on the training and validation set, and an explanation of the graphs. It also shows how the model performed on the test set after it had been trained, and explains what that means for the business requirements.
 
 ## Unfixed Bugs
 
-- You will need to mention unfixed bugs and why they were unfixed. This section should include shortcomings of the frameworks or technologies used. Although time can be a significant variable for consideration, paucity of time and difficulty understanding implementation is not a valid reason to leave bugs unfixed.
+There are no unfixed bugs
 
 ## Deployment
 
-### Heroku
+### Render
 
-- The App live link is: `https://YOUR_APP_NAME.herokuapp.com/`
-- Set the runtime.txt Python version to a [Heroku-20](https://devcenter.heroku.com/articles/python-support#supported-runtimes) stack currently supported version.
-- The project was deployed to Heroku using the following steps.
-
-1. Log in to Heroku and create an App
-2. At the Deploy tab, select GitHub as the deployment method.
-3. Select your repository name and click Search. Once it is found, click Connect.
-4. Select the branch you want to deploy, then click Deploy Branch.
-5. The deployment process should happen smoothly if all deployment files are fully functional. Click the button Open App on the top of the page to access your App.
-6. If the slug size is too large, then add large files not required for the app to the .slugignore file.
+- The App live link is: `https://project-5-mildew-detection.onrender.com/`
 
 ## Main Data Analysis and Machine Learning Libraries
 
-- Here, you should list the libraries used in the project and provide an example(s) of how you used these libraries.
+- numpy==1.26.4 - used to convert information to arrays
+- pandas==2.1.1 - used for converting information to a dataframe and saving as such
+- matplotlib==3.8.0 - used to plot the distribution of datasets
+- seaborn==0.13.2 - used for making statistical graphics
+- plotly==5.17.0 - used for plotting results of ML model training
+- Pillow==10.0.1 - used to adjust images
+- streamlit==1.40.2 - used to create the dashboard's interface
+- joblib==1.4.2 - used for runnning tasks in parallel
+- scikit-learn==1.3.1 - used for model evaluation
+- tensorflow-cpu==2.15.0 - used for model creation
+
+### Other technologies used
+
+- Streamlit - used for dashboard development to present data and for final project delivery
+
+- Render - used to deploy the project as a web app.
+
+- Git/GitHub - used for version control and code storage
+
+- Jupyter Notebooks - IDE used to develop the project
+
+- Am I responsive - used to produce screenshot of the project.
+
+## Issues
+
+During deployment, the app exceeded the size limit imposed by the hosting platform (Render). Despite efforts to reduce the size by adding unnecessary files and folders to .slugignore, the project remained too large to deploy successfully.
+
+To resolve this, the following adjustment was made:
+
+Downgraded Python version from 3.12 to 3.11 to reduce dependency bloat and ensure compatibility with smaller library builds.
+
+## Testing
+
+### Manual Testing
+
+*Business Requirements Testing*
+
+**Requirement 1** - The client is interested in conducting a study to visually differentiate a healthy cherry leaf from one with powdery mildew.
+
+- As an end user, I can review a page of project findings so that I can receive more detailed information on what conclusions the development team came to.
+
+| Dashboard item | Test conducted | Expected result | Actual result |
+| -- | -- | -- | -- |
+| Navbar | Selecting button for Image Visualiser | Image Visualiser page opens | Success |
+| Button for difference between average & variability image | Click button | Display average & variability image for healthy & infected leaves | Success |
+| Button for difference between average healthy & infect leaves | Click button | Display both average images & difference image for average healthy & infect leaves | Success |
+| Button for image montage | Click button | Display dropdown for montage creation | Success |
+| Dropdown option for healthy leaves | Select & click button to create montage | See montage of healthy leaves| Success |
+| Dropdown option for infected leaves | Select & click button to create montage | See montage of infected leaves| Success |
+
+- As an end user I can view a page detailing the project hypothesis so that I can understand the reasoning behind the developer's analysis
+
+| Dashboard item | Test conducted | Expected result | Actual result |
+| -- | -- | -- | -- |
+| Navbar | Selecting button for Project Hypotheses | Project Hypothesis page opens | Success |
+
+**Requirement 2** - The client is interested in predicting if a cherry leaf is healthy or contains powdery mildew.
+
+The client wanted a dashboard that would let them upload images of leaves to the site and have an accurate reading of whether they were healthy or sick. This requirement was considered in the below user story:
+
+- As an end user I can upload an image of a leaf so that I can learn if it is diseased or not. 
+
+| Dashboard item | Test conducted | Expected result | Actual result |
+| -- | -- | -- | -- |
+| Navbar | Selecting button for Mildew Detector |Mildew Detector page opens | Success |
+| Link to Kaggle on Mildew Detector page | Click on link |Kaggle page for dataset opens | Success |
+| Box for uploading data | Drag & drop leaf image into box | See report displaying analysis of the image | Success |
+| Box for uploading data | Use browse files button | File explorer opens to enable selection | Success |
+| Box for uploading data | Upload image from file explorer | See report displaying analysis of the image | Success |
+| Box for uploading data | Repeat prior two items for multiple images | See report displaying analysis of all the images| Success |
+| Image analysis report | Click button to download csv report of analysis | Report is downloaded containing the results shown on dashboard| Success |
+
+### Python Validation
 
 ## Credits
-
-- In this section, you need to reference where you got your content, media and from where you got extra help. It is common practice to use code from other repositories and tutorials. However, it is necessary to be very specific about these sources to avoid plagiarism.
-- You can break the credits section up into Content and Media, depending on what you have included in your project.
 
 ### Content
 
 - Project idea and structure provided by Code Institute Portfolio 5: Predictive Analytics brief.
 
-- CNN architecture guidance from TensorFlow documentation and examples.
+- The dataset was created by Code institute and taken from Kaggle
+  
+- The Malaria Walkthrough Project from Code Institute was used as a guide when assembling this project.
 
-### Media
+## Acknowledgement
 
-- The photos used on the home and sign-up page are from This Open-Source site.
-- The images used for the gallery page were taken from this other open-source site.
+- I would like to acknowledge my mentor, Mo Shami, who provided valuable insights and guidance during the project. I would also like to thank the Slack community and Tutor Support, who helped with technical issues.
 
-## Acknowledgements (optional)
-
-- Thank the people who provided support throughout this project.
+[Back to top](#contents)

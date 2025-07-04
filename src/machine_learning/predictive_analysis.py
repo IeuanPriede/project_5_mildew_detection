@@ -55,7 +55,7 @@ def load_model_and_predict(my_image, version):
     Perform ML prediction on live images
     """
 
-    model = load_model(f"outputs/{version}/powdery_mildew_model.h5")
+    model = load_model(f"outputs/{version}/powdery_mildew_detector_model.h5")
 
     pred_proba = model.predict(my_image)[0, 0]
 
