@@ -1,4 +1,6 @@
 import streamlit as st
+import tensorflow as tf
+import keras
 from app_pages.multipage import MultiPage
 
 # load scripts for pages
@@ -7,6 +9,9 @@ from app_pages.image_visualizer import image_visualizer_body
 from app_pages.mildew_detector import mildew_detector_body
 from app_pages.project_hypothesis import project_hypothesis_body
 from app_pages.ml_performance_metrics import ml_performance_metrics
+
+print("TF version:", tf.__version__)
+print("Keras version:", keras.__version__)
 
 # Create an instance of the app
 app = MultiPage(app_name="Cherry Picker")
