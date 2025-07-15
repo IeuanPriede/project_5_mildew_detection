@@ -8,6 +8,7 @@
   - [Contents](#contents)
   - [Introduction](#introduction)
   - [Dataset Content](#dataset-content)
+  - [User Stories](#user-stories)
   - [Business Requirements](#business-requirements)
   - [Hypothesis and how to validate?](#hypothesis-and-how-to-validate)
   - [The rationale to map the business requirements to the Data Visualisations and ML tasks](#the-rationale-to-map-the-business-requirements-to-the-data-visualisations-and-ml-tasks)
@@ -40,6 +41,72 @@ The project is hosted on the streamlit app and a live version may be found [here
 
 - The dataset is sourced from [Kaggle](https://www.kaggle.com/codeinstitute/cherry-leaves). We then created a fictitious user story where predictive analytics can be applied in a real project in the workplace.
 - The dataset contains +4 thousand images taken from the client's crop fields. The images show healthy cherry leaves and cherry leaves that have powdery mildew, a fungal disease that affects many plant species. The cherry plantation crop is one of the finest products in their portfolio, and the company is concerned about supplying the market with a compromised quality product.
+
+## User Stories
+
+- Site Information
+  
+  As an end user I can view a page summarising the project so that new users can easily determine the purpose and rationale
+
+  AC1: Display a short summary of the reason for the site
+
+  AC2: Display a list of project objectives
+
+  AC3: Display a summary of the dataset
+
+- Project Findings
+  
+  As an end user I can review a page of project findings so that I can receive more detailed information on what conclusions the development team came to
+
+  AC 1: An analysis of the differences between healthy & diseased leaves
+
+  AC 2: An image montage of healthy & sick leaves
+
+  AC 3: An analysis of the difference between the average image & variability image for healthy & diseased leaves
+
+- Image Analysis
+  
+  As an end user I can upload an image of a leaf so that I can learn if it is diseased or not
+
+  AC 1: View a page where images can be downloaded & uploaded
+
+  AC 2: Be able to download an image dataset
+
+  AC 3: Be able to upload an image of a healthy or diseased leaf and receive a correct analysis
+
+- Data Acquisition & Preparation
+
+  As a data scientist I can collect & prepare data so that it can be used for analysis & training ML models
+
+  AC 1: Gather suitable, data from a permitted source
+
+  AC 2: Ensure data is clean and clean it if not
+
+  AC 3: Prepare data for use in analysis
+
+- Project Hypothesis
+
+  As an end user I can view a page detailing the project hypothesis so that I can understand the reasoning behind the developer's analysis
+
+  AC 1: View a page where project hypotheses are visible
+
+- Performance Metrics
+
+  As an end user I can view a page of performance metrics so that I can see how well the ML model performed
+
+  AC 1: See graphics of label frequency, model accuracy and loss
+
+  AC 2: See an explanation of the performance metrics and what they indicate about the ML model
+
+  AC 3: See results of model performance on test set
+
+- Create a Machine Learning (ML) Model
+
+  As a data scientist, I can create a machine learning model to make predictions on uploaded images
+
+  AC 1: Create a machine learning model using a convolutional neural network
+
+  AC 2: Model can predict results with minimum 97% accuracy
 
 ## Business Requirements
 
@@ -217,6 +284,33 @@ There are no unfixed bugs
 
 - The App live link is: `https://project-5-mildew-detection.onrender.com/`
 
+To deploy this project on Render, please follow these steps:
+
+1. Under 'Add new', select 'Web Service'.
+
+![Web Service](assets/images/deployment/render-deployment-1.png)
+
+2. Select correct GitHub repository. 'project_5_mildew_detection'
+
+![Repo](assets/images/deployment/render-2.png)
+
+3. The following options set as seen in the image below.
+
+![Options](assets/images/deployment/render-3.png)
+
+4. Set "Build Command" as "pip install -r requirements.txt && ./setup.sh
+   Set "Start Command" as "streamlit run app.py"
+
+![Setup](assets/images/deployment/render-4.png)
+
+5. Input correct Environment Varliables:
+   PORT - 8501
+   PYTHON_VERSION - 3.9.18
+
+![Environment Variables](assets/images/deployment/render-6.png)
+
+6. Select "Deploy Live".
+
 ## Main Data Analysis and Machine Learning Libraries
 
 - numpy==1.26.4 - used to convert information to arrays
@@ -248,7 +342,7 @@ During deployment, the app exceeded the size limit imposed by the hosting platfo
 
 To resolve this, the following adjustment was made:
 
-Downgraded Python version from 3.12 to 3.11 to reduce dependency bloat and ensure compatibility with smaller library builds.
+Downgraded Python version from 3.12 to 3.9 to reduce dependency bloat and ensure compatibility with smaller library builds.
 
 ## Testing
 
@@ -292,6 +386,15 @@ The client wanted a dashboard that would let them upload images of leaves to the
 | Image analysis report | Click button to download csv report of analysis | Report is downloaded containing the results shown on dashboard| Success |
 
 ### Python Validation
+
+The code in the Jupyter notebooks was validated using pycodestyle, which was installed through the following command: pip install pep8 pycodestyle pycodestyle_magic.
+
+It was implemented using a cell at the top of each page containing the following:
+
+%load_ext pycodestyle_magic
+%pycodestyle_on
+
+A copy was made of each notebook, which was run with pycodestyle enabled, any errors were then corrected in the corresponding cell in the primary notebook.
 
 The python code for the app pages and files for data management and predictive analysis was validated using a [PEP8 linter](https://pep8ci.herokuapp.com/).
 
