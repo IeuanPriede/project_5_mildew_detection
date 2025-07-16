@@ -298,31 +298,32 @@ To deploy this project on Render, please follow these steps:
 
 ![Options](assets/images/deployment/render-3.png)
 
-4. Set "Build Command" as "pip install -r requirements.txt && ./setup.sh
-   Set "Start Command" as "streamlit run app.py"
+4. - Set "Build Command" as "pip install -r requirements.txt && ./setup.sh
+   - Set "Start Command" as "streamlit run app.py"
 
 ![Setup](assets/images/deployment/render-4.png)
 
 5. Input correct Environment Varliables:
-   PORT - 8501
-   PYTHON_VERSION - 3.9.18
+   - PORT - 8501 
+   - PYTHON_VERSION - 3.9.18
 
 ![Environment Variables](assets/images/deployment/render-6.png)
 
-6. Select "Deploy Live".
+1. Select "Deploy Web Service".
 
 ## Main Data Analysis and Machine Learning Libraries
 
-- numpy==1.26.4 - used to convert information to arrays
+- numpy==1.26.1 - used to convert information to arrays
 - pandas==2.1.1 - used for converting information to a dataframe and saving as such
 - matplotlib==3.8.0 - used to plot the distribution of datasets
 - seaborn==0.13.2 - used for making statistical graphics
 - plotly==5.17.0 - used for plotting results of ML model training
-- Pillow==10.0.1 - used to adjust images
+- Pillow==9.5.0 - used to adjust images
 - streamlit==1.40.2 - used to create the dashboard's interface
 - joblib==1.4.2 - used for runnning tasks in parallel
 - scikit-learn==1.3.1 - used for model evaluation
-- tensorflow-cpu==2.15.0 - used for model creation
+- tensorflow-cpu==2.16.1 - used for model creation
+- scipy>=1.7.0,<2.0.0
 
 ### Other technologies used
 
