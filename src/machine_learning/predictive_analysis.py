@@ -8,12 +8,10 @@ from src.data_management import load_pkl_file
 import random
 
 
-def predictions_probabilities(pred_proba, pred_class):
+def predictions_probabilities(pred_proba, pred_class, key=None):
     """
-    Plot probability results for
-    prediction of image
+    Plot probability results for prediction of image
     """
-
     prob_per_class = pd.DataFrame(
         data=[0, 0],
         index={'Uninfected': 0, 'Infected': 1}.keys(),
@@ -31,9 +29,10 @@ def predictions_probabilities(pred_proba, pred_class):
         x='Diagnostic',
         y=prob_per_class['Probability'],
         range_y=[0, 1],
-        width=600, height=300, template='seaborn')
+        width=600, height=300, template='seaborn'
+    )
 
-    st.plotly_chart(fig)
+    st.plotly_chart(fig, key=key)
 
 
 @st.cache_data
@@ -49,7 +48,7 @@ def resize_input_image(img, version):
     image_shape = load_image_shape(version)
     img_resized = img.resize((image_shape[1], image_shape[0]), Image.LANCZOS)
     my_image = np.expand_dims(img_resized, axis=0)/255
-    
+
     return my_image
 
 
@@ -76,4 +75,3 @@ def load_model_and_predict(my_image, version):
         f"**{pred_class.lower()}** with powdery mildew.")
 
     return pred_proba, pred_class
-

@@ -54,7 +54,11 @@ def mildew_detector_body():
             pred_proba, pred_class = load_model_and_predict(
                 resized_img, version=version
             )
-            predictions_probabilities(pred_proba, pred_class)
+            predictions_probabilities(
+                pred_proba,
+                pred_class,
+                key=f"chart_{image.name}"
+            )
 
             df_report = df_report._append(
                 {"Name": image.name, 'Result': pred_class},

@@ -309,7 +309,7 @@ To deploy this project on Render, please follow these steps:
 
 ![Environment Variables](assets/images/deployment/render-6.png)
 
-1. Select "Deploy Web Service".
+6. Select "Deploy Web Service".
 
 ## Main Data Analysis and Machine Learning Libraries
 
