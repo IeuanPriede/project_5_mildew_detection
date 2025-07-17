@@ -33,9 +33,12 @@ def predictions_probabilities(pred_proba, pred_class):
         range_y=[0, 1],
         width=600, height=300, template='seaborn')
 
-    keys = [x for x in range(100000)]
+    st.plotly_chart(fig)
 
-    st.plotly_chart(fig, key=random.sample(keys, 1))
+
+@st.cache_data
+def load_image_shape(version):
+    return load_pkl_file(file_path=f"outputs/{version}/image_shape.pkl")
 
 
 def resize_input_image(img, version):
@@ -43,19 +46,23 @@ def resize_input_image(img, version):
     Reshape size of image to average image size
     """
 
-    image_shape = load_pkl_file(file_path=f"outputs/{version}/image_shape.pkl")
+    image_shape = load_image_shape(version)
     img_resized = img.resize((image_shape[1], image_shape[0]), Image.LANCZOS)
     my_image = np.expand_dims(img_resized, axis=0)/255
-
+    
     return my_image
+
+
+@st.cache_resource
+def get_model(version):
+    return load_model(f"outputs/{version}/powdery_mildew_model.keras")
 
 
 def load_model_and_predict(my_image, version):
     """
-    Perform ML prediction on live images
+    Perform ML prediction on live images using cached model
     """
-
-    model = load_model(f"outputs/{version}/powdery_mildew_model.keras")
+    model = get_model(version)
 
     pred_proba = model.predict(my_image)[0, 0]
 
@@ -69,3 +76,4 @@ def load_model_and_predict(my_image, version):
         f"**{pred_class.lower()}** with powdery mildew.")
 
     return pred_proba, pred_class
+
