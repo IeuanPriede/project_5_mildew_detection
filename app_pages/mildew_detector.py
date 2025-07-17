@@ -36,7 +36,7 @@ def mildew_detector_body():
 
     if images_buffer is not None:
         df_report = pd.DataFrame([])
-        for image in images_buffer:
+        for idx, image in enumerate(images_buffer):
 
             img_pil = Image.open(image)
             st.info(f"Leaf Sample: **{image.name}**")
@@ -57,7 +57,7 @@ def mildew_detector_body():
             predictions_probabilities(
                 pred_proba,
                 pred_class,
-                key=f"chart_{image.name}"
+                key=f"chart_{idx}_{image.name}"
             )
 
             df_report = df_report._append(
