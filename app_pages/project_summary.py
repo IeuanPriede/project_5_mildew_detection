@@ -36,7 +36,7 @@ def project_summary_body():
 
     st.write(
         "* For more information, please see the [Project README file]\n"
-        "(https://github.com/IeuanPriede/project_5_mildew_detection/blob/main/README.md)."
+        "(https://shorturl.at/7O7XV)."
     )
 
     st.success(

@@ -399,9 +399,6 @@ A copy was made of each notebook, which was run with pycodestyle enabled, any er
 
 The python code for the app pages and files for data management and predictive analysis was validated using a [PEP8 linter](https://pep8ci.herokuapp.com/).
 
-- One exception.
-
-![Pep8](assets/images/pep8.png)
 
 ## Credits
 
