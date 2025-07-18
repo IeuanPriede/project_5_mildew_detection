@@ -11,6 +11,14 @@
   - [User Stories](#user-stories)
   - [Business Requirements](#business-requirements)
   - [Hypothesis and how to validate?](#hypothesis-and-how-to-validate)
+    - [Hypothesis 1](#hypothesis-1)
+    - [Validation Strategy](#validation-strategy)
+    - [Hypothesis 2](#hypothesis-2)
+    - [Validation Strategy](#validation-strategy-1)
+    - [Hypothesis 3](#hypothesis-3)
+    - [Validation Strategy](#validation-strategy-2)
+    - [Hypothesis 4](#hypothesis-4)
+    - [Validation Strategy](#validation-strategy-3)
   - [The rationale to map the business requirements to the Data Visualisations and ML tasks](#the-rationale-to-map-the-business-requirements-to-the-data-visualisations-and-ml-tasks)
   - [ML Business Case](#ml-business-case)
   - [Dashboard Design](#dashboard-design)
@@ -119,11 +127,11 @@ To save time in this process, the IT team suggested an ML system that detects in
 
 ## Hypothesis and how to validate?
 
-Hypothesis 🧠: Cherry leaves affected by powdery mildew exhibit consistent visual features that can be detected and accurately classified by a machine learning model.
+### Hypothesis 1
 
----
+Cherry leaves affected by powdery mildew exhibit consistent visual features that can be detected and accurately classified by a machine learning model.
 
-Validation Strategy ✅:
+### Validation Strategy
 
 - Step 1: Visual Analysis
 
@@ -184,6 +192,50 @@ Validation Strategy ✅:
     ![Performance](assets/images/performance.png)
 
     - Target prediction accuracy: ≥ 97% 🎯
+
+---
+
+### Hypothesis 2
+
+Powdery mildew primarily affects specific regions of the leaf (e.g., edges or veins), creating spatial patterns that can be exploited by a convolutional neural network.
+
+### Validation Strategy
+
+Use saliency mapping techniques such as Grad-CAM to highlight areas of attention for the CNN when making predictions.
+
+Analyze whether the model consistently focuses on infected regions in powdery mildew examples.
+
+If consistent spatial focus is observed, this supports the hypothesis.
+
+---
+
+### Hypothesis 3
+
+Variability in colour and texture between healthy and infected leaves is sufficiently distinct to allow accurate classification without manual feature engineering.
+
+### Validation Strategy
+
+Extract RGB histograms and texture-based features like Local Binary Patterns from both classes.
+
+Train a simple traditional ML classifier (e.g., logistic regression or decision tree) using only these features to check for basic separability.
+
+If the classifier achieves reasonable accuracy (>85%), this suggests colour and texture alone provide strong signal.
+
+---
+
+### Hypothesis 4
+
+The model's classification performance is resilient to moderate variations in image quality (e.g., lighting, resolution, orientation), supporting deployment in real-world field conditions.
+
+### Validation Strategy
+
+Augment the dataset by applying transformations such as brightness shifts, Gaussian noise, and rotations.
+
+Evaluate model predictions on the augmented set.
+
+If prediction accuracy remains within ~3% of baseline, it validates robustness to real-world image variability.
+
+---
 
 ## The rationale to map the business requirements to the Data Visualisations and ML tasks
 
